@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Mission to Mars</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='css/simple-sidebar.css') }}" rel="stylesheet">
+
+  <style type="text/css">
+    body { background: rgb(228, 222, 222)!important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+ </style>
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button"> Scrape New Data!</a></p>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 ">
+      <h2>Latest Mars News</h2>
+      <h4> {{mars_data.news.news_title}}</h4>
+      <p>{{ mars_data.news.news_p }}</p>
+    </div>
+    <!-- news sections -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8 ">
+          <h2> Featured Mars Image</h2>
+          <img src="{{mars_data.featured_image.featured_image}}" width="80%" height="80%" class="vizualization rounded float-left" alt="Mars Featured Image">
+        </div>
+
+        <!-- mars weather card -->
+
+        <div class="col-md-4 ">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Current Weather on Mars</h5>
+               <p class="card-text">{{mars_data.weather.weather }}</p>
+            </div>
+          </div>
+
+          <!-- facts table -->
+          
+          <h2>Mars Facts</h2>
+          <table>
+            
+            {% for item in mars_data.facts.facts %}
+            <TR>
+               <TD >{{item[0]}}</TD>
+               <TD >{{item[1]}}</TD>
+            </TR>
+            {% endfor %}
+
+          </table>
+      
+        </div>
+    </div>
+
+    </div>
+    <br>
+    
+    <div class="container">
+
+     <div class="row">
+       <div class="col-md-12 ">
+
+         
+            <h3 align="center"> Mars Hemispheres </h3>
+            <hr>
+           <table>
+            <TR> 
+               <TD > 
+                <h5>{{mars_data.hemisphere.hemisphere_image_urls[0]['title']}}</h5>
+                <img width="60%" height="30%" src="{{ mars_data.hemisphere.hemisphere_image_urls[0]['img_url']}}" alt={{mars_data.hemisphere.hemisphere_image_urls[0]['title']}} >   
+              </TD>
+
+                <TD > 
+                <h5>{{mars_data.hemisphere.hemisphere_image_urls[1]['title']}}</h5>
+                <img width="60%" height="30%" src="{{ mars_data.hemisphere.hemisphere_image_urls[1]['img_url']}}" alt={{mars_data.hemisphere.hemisphere_image_urls[1]['title']}} >   
+              </TD>
+            </TR>
+            <TR>
+               <TD > 
+                <h5>{{mars_data.hemisphere.hemisphere_image_urls[2]['title']}}</h5>
+                <img width="60%" height="30%" src="{{ mars_data.hemisphere.hemisphere_image_urls[2]['img_url']}}" alt={{mars_data.hemisphere.hemisphere_image_urls[2]['title']}} >   
+               </TD>
+               <TD > 
+                <h5>{{mars_data.hemisphere.hemisphere_image_urls[3]['title']}}</h5>
+                <img width="60%" height="30%" src="{{ mars_data.hemisphere.hemisphere_image_urls[3]['img_url']}}" alt={{mars_data.hemisphere.hemisphere_image_urls[3]['title']}} >   
+               </TD>
+            </TR>
+
+          </table>
+        </div>
+
+    </div>
+
+    </div>
+
+<!-- Bootstrap core JavaScript -->
+  <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+  <!-- Menu Toggle Script -->
+  <!-- <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script> -->
+
+</body>
+
+</html>
